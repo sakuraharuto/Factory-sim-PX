@@ -21,7 +21,7 @@ public class EventsWin : MonoBehaviour
         optionsWin = GameObject.Find("OptionsWin");
         optBtn0 = GameObject.Find("OptionsBtn0").GetComponent<Button>();
         optBtn0.onClick.AddListener(() => { optionsWin.SetActive(false); });
-        optionsWin.SetActive(false);
+        // optionsWin.SetActive(false);
 
         btn0 = GameObject.Find("Button0").GetComponent<Button>();
         // btn1 = GameObject.Find("Button1").GetComponent<Button>();

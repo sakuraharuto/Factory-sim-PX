@@ -1,0 +1,25 @@
+{
+    "id": 1,
+    "name": "test1",
+    "description": "test1des",
+    "type": 11,
+    "hasResult": true,
+    "result": {
+        "totalMoney": 111,
+        "income": 1111,
+        "employeeNum": 11111
+    },
+    "hasOption": true,
+    "optionNum": 1,
+    "options": [
+        {
+            "name": "opt1",
+            "description": "opt1des",
+            "result": {
+                "totalMoney": 1,
+                "income": 1,
+                "employeeNum": 1
+            }
+        }
+    ]
+}

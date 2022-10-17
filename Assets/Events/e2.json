@@ -1,0 +1,34 @@
+{
+    "id": 2,
+    "name": "test2",
+    "description": "test2des",
+    "type": 22,
+    "hasResult": true,
+    "result": {
+        "totalMoney": -222,
+        "income": -2222,
+        "employeeNum": -22222
+    },
+    "hasOption": true,
+    "optionNum": 2,
+    "options": [
+        {
+            "name": "opt1",
+            "description": "opt2des",
+            "result": {
+                "totalMoney": -1,
+                "income": -1,
+                "employeeNum": -1
+            }
+        },
+        {
+            "name": "opt2",
+            "description": "opt2des",
+            "result": {
+                "totalMoney": 2,
+                "income": 2,
+                "employeeNum": 2
+            }
+        }
+    ]
+}
