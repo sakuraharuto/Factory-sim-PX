@@ -24,7 +24,7 @@ public class Option
 }
 
 public class Event {
-    int ID;
+    int id;
     string name;
     string description;
     int type;
