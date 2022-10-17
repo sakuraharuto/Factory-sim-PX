@@ -7,7 +7,8 @@
     "result": {
         "totalMoney": 111,
         "income": 1111,
-        "employeeNum": 11111
+        "employeeNum": 11111,
+        "fireRisk": 1
     },
     "hasOption": true,
     "optionNum": 1,
@@ -18,7 +19,8 @@
             "result": {
                 "totalMoney": 1,
                 "income": 1,
-                "employeeNum": 1
+                "employeeNum": 1,
+                "fireRisk": 1
             }
         }
     ]

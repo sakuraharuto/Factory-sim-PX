@@ -4,8 +4,6 @@ using UnityEngine;
 using System.IO;
 using System;
 
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Runtime.Serialization;
 
 [Serializable]
 public class Result 
@@ -13,9 +11,14 @@ public class Result
     public int totalMoney;
     public int income;
     public int employeeNum;
+    public int fireRisk;
 
     void Apply()
     {
+        GameData.totalmoney += totalMoney;
+        GameData.income += income;
+        GameData.employeenum += employeeNum;
+        GameData.firerisk += fireRisk;
     }
 }
 
@@ -35,24 +38,6 @@ public class Option
 [Serializable]
 public class Event {
 
-    // public Event(ref Event e)
-    // {
-    //     id = e.id;
-    //     name = e.name;
-    //     description = e.description;
-    //     type = e.type;
-
-    //     hasResult = e.hasResult;
-    //     result = e.result;
-
-    //     hasOptions = e.hasOptions;
-    //     optionNum = e.optionNum;
-    //     for (int i = 0; i < optionNum; i++)
-    //     {
-    //         // options[i] = e.options[i];
-    //     }
-    // }
-
     public int id;
     public string name;
     public string description;
@@ -65,112 +50,7 @@ public class Event {
     public int optionNum;
     public List<Option> options;
 
-    // public void init()
-    // {
-    //     id = 999;
-    //     name = "test";
-    //     description = "testdes";
-    //     type = 1;
-    //     hasResult = true;
-    //     result = new Result();
-    //     result.totalMoney = 10;
-    //     result.income = 100;
-    //     result.employeeNum = 1000;
-    //     hasOption = true;
-    //     optionNum = 2;
-    //     options = new List<Option>();
-    //     Option opt = new Option();
-    //     opt.name = "opt1";
-    //     opt.description = "opt1des";
-    //     opt.result = new Result();
-    //     opt.result.totalMoney = 111;
-    //     opt.result.income = 222;
-    //     opt.result.employeeNum = 333;
-    //     options.Add(opt);
-    //     Option opt2 = new Option();
-    //     opt2.name = "opt2";
-    //     opt2.description = "opt2des";
-    //     opt2.result = new Result();
-    //     opt2.result.totalMoney = 444;
-    //     opt2.result.income = 555;
-    //     opt2.result.employeeNum = 666;
-    //     options.Add(opt2);
-    // }
-
-    public void printJson()
-    {
-        string json = JsonUtility.ToJson(this);
-        Debug.Log(json);
-    }
-}
-
-
-public class EventPool
-{
-    private static EventPool instance;
-
-    // public Event(ref Event e)
-    // {
-    //     id = e.id;
-    //     name = e.name;
-    //     description = e.description;
-    //     type = e.type;
-
-    //     hasResult = e.hasResult;
-    //     result = e.result;
-
-    //     hasOptions = e.hasOptions;
-    //     optionNum = e.optionNum;
-    //     for (int i = 0; i < optionNum; i++)
-    //     {
-    //         // options[i] = e.options[i];
-    //     }
-    // }
-
-    public int id;
-    public string name;
-    public string description;
-    public int type;
-
-    public bool hasResult;
-    public Result result;
-
-    public bool hasOption;
-    public int optionNum;
-    public List<Option> options;
-
-    // public void init()
-    // {
-    //     id = 999;
-    //     name = "test";
-    //     description = "testdes";
-    //     type = 1;
-    //     hasResult = true;
-    //     result = new Result();
-    //     result.totalMoney = 10;
-    //     result.income = 100;
-    //     result.employeeNum = 1000;
-    //     hasOption = true;
-    //     optionNum = 2;
-    //     options = new List<Option>();
-    //     Option opt = new Option();
-    //     opt.name = "opt1";
-    //     opt.description = "opt1des";
-    //     opt.result = new Result();
-    //     opt.result.totalMoney = 111;
-    //     opt.result.income = 222;
-    //     opt.result.employeeNum = 333;
-    //     options.Add(opt);
-    //     Option opt2 = new Option();
-    //     opt2.name = "opt2";
-    //     opt2.description = "opt2des";
-    //     opt2.result = new Result();
-    //     opt2.result.totalMoney = 444;
-    //     opt2.result.income = 555;
-    //     opt2.result.employeeNum = 666;
-    //     options.Add(opt2);
-    // }
-
+    // for debugging
     public void printJson()
     {
         string json = JsonUtility.ToJson(this);
@@ -190,7 +70,7 @@ public class EventPool
         if (instance == null)
         {
             instance = new EventPool();
-            instance.events = new List<Event>(); // list<> have to be initialized!
+            instance.events = new List<Event>(); // list<> have to be initialized first!
         }
         return instance;
     }
@@ -203,8 +83,12 @@ public class EventPool
 
         Event e = JsonUtility.FromJson<Event>(json);
         if (e != null){
-            e.printJson();
+            // e.printJson();
             events.Add(e);
+        }
+        else
+        {
+            Debug.Log("json parse failed: " + path);
         }
     }
 }
@@ -212,6 +96,7 @@ public class EventPool
 public class EventSys : MonoBehaviour
 {
     string path = @"Assets/Events/";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -220,7 +105,7 @@ public class EventSys : MonoBehaviour
 
         foreach (var file in eventsFiles)
         {
-            Debug.Log(file.FullName);
+            // Debug.Log(file.FullName);
             eventPool.LoadEventFormJSON(file.FullName);
         }
     }

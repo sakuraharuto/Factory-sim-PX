@@ -18,7 +18,8 @@
             "result": {
                 "totalMoney": -1,
                 "income": -1,
-                "employeeNum": -1
+                "employeeNum": -1,
+                "fireRisk": -1
             }
         },
         {
@@ -27,7 +28,8 @@
             "result": {
                 "totalMoney": 2,
                 "income": 2,
-                "employeeNum": 2
+                "employeeNum": 2,
+                "fireRisk": 2
             }
         }
     ]
