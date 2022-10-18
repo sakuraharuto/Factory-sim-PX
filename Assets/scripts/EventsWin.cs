@@ -17,6 +17,9 @@ public class EventsWin : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI eventInfo;
 
+    [SerializeField]
+    TextMeshProUGUI option0Info, option1Info, option2Info, option3Info, option4Info;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,11 @@ public class EventsWin : MonoBehaviour
         option2 = GameObject.Find("Option2");
         option3 = GameObject.Find("Option3");
         option4 = GameObject.Find("Option4");
+
+        option0Info = GameObject.Find("Option0Info").GetComponent<TextMeshProUGUI>();
+        option1Info = GameObject.Find("Option1Info").GetComponent<TextMeshProUGUI>();
+        option2Info = GameObject.Find("Option2Info").GetComponent<TextMeshProUGUI>();
+        option3Info = GameObject.Find("Option3Info").GetComponent<TextMeshProUGUI>();
 
         option0Btn = GameObject.Find("OptionButton0").GetComponent<Button>();
         option1Btn = GameObject.Find("OptionButton1").GetComponent<Button>();

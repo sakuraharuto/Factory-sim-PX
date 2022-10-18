@@ -1881,7 +1881,7 @@ GameObject:
   - component: {fileID: 521427174}
   - component: {fileID: 521427173}
   m_Layer: 5
-  m_Name: Info
+  m_Name: Option1Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2755,7 +2755,7 @@ GameObject:
   - component: {fileID: 716875738}
   - component: {fileID: 716875737}
   m_Layer: 5
-  m_Name: Info
+  m_Name: Option4Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3134,7 +3134,7 @@ GameObject:
   - component: {fileID: 735140142}
   - component: {fileID: 735140141}
   m_Layer: 5
-  m_Name: Info
+  m_Name: Option2Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3467,7 +3467,7 @@ GameObject:
   - component: {fileID: 775979549}
   - component: {fileID: 775979548}
   m_Layer: 5
-  m_Name: Info
+  m_Name: Option0Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5150,7 +5150,7 @@ GameObject:
   - component: {fileID: 1337589406}
   - component: {fileID: 1337589405}
   m_Layer: 5
-  m_Name: Info
+  m_Name: Option3Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5902,6 +5902,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventInfo: {fileID: 0}
+  option0Info: {fileID: 0}
+  option1Info: {fileID: 0}
+  option2Info: {fileID: 0}
+  option3Info: {fileID: 0}
+  option4Info: {fileID: 0}
 --- !u!1 &1601928011
 GameObject:
   m_ObjectHideFlags: 0
@@ -7637,6 +7642,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventInfo: {fileID: 775979548}
+  option0Info: {fileID: 0}
+  option1Info: {fileID: 0}
+  option2Info: {fileID: 0}
+  option3Info: {fileID: 0}
+  option4Info: {fileID: 0}
 --- !u!114 &2049924568
 MonoBehaviour:
   m_ObjectHideFlags: 0
