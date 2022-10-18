@@ -7,6 +7,7 @@ using TMPro;
 
 public class GameData 
 {
+    public static int event_idx = 0;
 
     public static int totalmoney=100;
     public static int income;
@@ -88,8 +89,24 @@ public class GameSystem : MonoBehaviour
    
     public  void NewMonth()
     {
+        GameData.firerisk=GameData.firerisk+10;
         GameData.month_num++;
         Debug.Log(GameData.month_num);
+        if (GameData.month_num > 3) {
+            var e = EventPool.GetInstance().events[GameData.event_idx++ % 3];
+            var info = e.name + ":" + e.description;
+            Debug.Log(info);
+            for (int i = 0; i < e.optionNum; i++)
+            {
+                var option = "[" + e.options[i].name + "]" + e.options[i].description;
+                Debug.Log(option);
+            }
+            
+        }
+        if(GameData.firerisk>80)
+        {
+             var x=EventPool.GetInstance().events[GameData.event_idx];
+        }
     }
 
     //EndMonth ??????
