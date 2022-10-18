@@ -22,9 +22,5 @@ public class Rsik : MonoBehaviour
 
 
     // Start is called before the first frame update
-    public void takerisk(float amount)
-     {
-         risk += amount;
-         Risk_image.fillAmount = risk / 100f;
-     }
+   
 }

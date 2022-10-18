@@ -4,15 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class GameData 
 {
 
-    public static int totalmoney;
+    public static int totalmoney=100;
     public static int income;
-    public static int employeenum;
-    public static int firerisk;
-    public static int equipment_quantity;
-    public static int equipment_cost;
+    public static int employeenum=0;
+    public static int firerisk=0;
+    public static int equipment_quantity=1;
+    public static int equipment_cost=50;
+    public static int month_num = 1;
 
    /* public GameData(int TotalMoney,  int EmployeeNum, int FireRisk, int Equipment_Quantity)
     {
@@ -44,8 +46,9 @@ public class GameSystem : MonoBehaviour
     public TextMeshProUGUI Tfirerisk;
     public TextMeshProUGUI Temployees;
     public TextMeshProUGUI Tincome;
+    
 
-    public  void  showe()
+    public  void  show()
     {
         Ttotalmoney = transform.GetComponent<TextMeshProUGUI>();
         Tequipment = transform.GetComponent<TextMeshProUGUI>();
@@ -83,19 +86,20 @@ public class GameSystem : MonoBehaviour
 
 
    
-    void NewMonth()
+    public  void NewMonth()
     {
-        if(GameData.firerisk>50)
-        {
-            
-        }
+        GameData.month_num++;
+        Debug.Log(GameData.month_num);
     }
 
     //EndMonth ??????
-    void EndMonth()
+    public void EndMonth()
     {
         GameData.income = GetIncome();
         GameData.totalmoney = GameData.totalmoney + GameData.income;
+        Debug.Log(GameData.totalmoney);
+        Debug.Log(GameData.income);
+
     }
 
     
