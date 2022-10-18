@@ -7289,7 +7289,7 @@ GameObject:
   - component: {fileID: 1964287439}
   - component: {fileID: 1964287438}
   m_Layer: 5
-  m_Name: Info
+  m_Name: EventInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

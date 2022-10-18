@@ -30,6 +30,8 @@ public class EventsWin : MonoBehaviour
         eventBtn1 = GameObject.Find("EventButton1").GetComponent<Button>();
         eventBtn2 = GameObject.Find("EventButton2").GetComponent<Button>();
 
+        eventInfo = GameObject.Find("EventInfo").GetComponent<TextMeshProUGUI>();
+
         optionsWin = GameObject.Find("OptionsWin");
         eventBtn0.onClick.RemoveAllListeners();
         eventBtn0.onClick.AddListener(() => { Debug.Log("Do"); optionsWin.SetActive(true); optionsWin.SetActive(true); });
