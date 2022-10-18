@@ -1,9 +1,9 @@
 {
     "id": 1,
-    "name": "test1",
-    "description": "test1des",
+    "name": "Electronic wear out",
+    "description": "Some electronic components wear out after some time, which may cause a fire hazard in the future.",
     "type": 11,
-    "hasResult": true,
+    "hasResult": false,
     "result": {
         "totalMoney": 111,
         "income": 1111,
@@ -11,16 +11,30 @@
         "fireRisk": 1
     },
     "hasOption": true,
-    "optionNum": 1,
+    "optionNum": 3,
     "options": [
         {
-            "name": "opt1",
-            "description": "opt1des",
+            "name": "It's okay, don't worry.",
+            "description": "It's okay, don't worry.",
             "result": {
-                "totalMoney": 1,
-                "income": 1,
-                "employeeNum": 1,
-                "fireRisk": 1
+                "fireRisk": 10
+            }
+        },
+        {
+            "name": "Do a fast repair.",
+            "description": "Do a fast repair.",
+            "result": {
+                "totalMoney": -50,
+                "fireRisk": -5
+            }
+        },
+        {
+            "name": "Shut down production and complete repair.",
+            "description": "Shut down production and complete repair.",
+            "result": {
+                "totalMoney": -100,
+                "income": 0,
+                "fireRisk": -10
             }
         }
     ]
