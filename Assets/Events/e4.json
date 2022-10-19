@@ -1,0 +1,43 @@
+{
+    "id": 4,
+    "name": "Electric fire",
+    "description": "The electric circuit for the production line is on fire! We need to deal with it now!",
+    "type": 22,
+    "hasResult": false,
+    "result": {
+        "totalMoney": -222,
+        "income": -2222,
+        "employeeNum": -22222
+    },
+    "hasOption": true,
+    "optionNum": 3,
+    "options": [
+        {
+            "name": "Call 911!",
+            "description": "Call 911!",
+            "result": {
+                "totalMoney": -300,
+                "income": 0,
+                "fireRisk": -35
+            }
+        },
+        {
+            "name": "Use sand and dry powder extinguisher!",
+            "description": "Use sand and dry powder extinguisher!",
+            "result": {
+                "totalMoney": -200,
+                "income": 0,
+                "fireRisk": -50
+            }
+        },
+        {
+            "name": "Use a fire hose with water!",
+            "description": "Use a fire hose with water!",
+            "result": {
+                "totalMoney": -500,
+                "income": 0,
+                "fireRisk": -20
+            }
+        }
+    ]
+}

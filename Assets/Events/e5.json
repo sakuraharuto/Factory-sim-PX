@@ -1,0 +1,34 @@
+{
+    "id": 5,
+    "name": "Warehouse on fire",
+    "description": "Our warehouse with flammable material is on fire! What should we do?!",
+    "type": 11,
+    "hasResult": false,
+    "result": {
+        "totalMoney": -222,
+        "income": -2222,
+        "employeeNum": -22222
+    },
+    "hasOption": true,
+    "optionNum": 2,
+    "options": [
+        {
+            "name": "Call 911!",
+            "description": "Call 911!",
+            "result": {
+                "totalMoney": -500,
+                "income": 0,
+                "fireRisk": -30
+            }
+        },
+        {
+            "name": "Use a fire hose with water!",
+            "description": "Use a fire hose with water!",
+            "result": {
+                "totalMoney": -300,
+                "income": 0,
+                "fireRisk": -30
+            }
+        }
+    ]
+}

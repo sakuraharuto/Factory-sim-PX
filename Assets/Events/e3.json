@@ -1,0 +1,31 @@
+{
+    "id": 3,
+    "name": "Vent broke",
+    "description": "Venting broke down in the factory. The ventilation problem may cause trouble in the future.",
+    "type": 11,
+    "hasResult": false,
+    "result": {
+        "totalMoney": -222,
+        "income": -2222,
+        "employeeNum": -22222
+    },
+    "hasOption": true,
+    "optionNum": 2,
+    "options": [
+        {
+            "name": "Leave it now.",
+            "description": "Leave it now.",
+            "result": {
+                "fireRisk": 10
+            }
+        },
+        {
+            "name": "We need to repair them.",
+            "description": "We need to repair them.",
+            "result": {
+                "totalMoney": -100,
+                "fireRisk": -10
+            }
+        }
+    ]
+}

@@ -1,35 +1,38 @@
 {
     "id": 2,
-    "name": "test2",
-    "description": "test2des",
-    "type": 22,
-    "hasResult": true,
+    "name": "Smoking",
+    "description": "Some employees smoke during work, and this may cause a fire hazard.",
+    "type": 11,
+    "hasResult": false,
     "result": {
         "totalMoney": -222,
         "income": -2222,
         "employeeNum": -22222
     },
     "hasOption": true,
-    "optionNum": 2,
+    "optionNum": 3,
     "options": [
         {
-            "name": "opt1",
-            "description": "opt2des",
+            "name": "It's okay, don't worry.",
+            "description": "It's okay, don't worry.",
             "result": {
-                "totalMoney": -1,
-                "income": -1,
-                "employeeNum": -1,
-                "fireRisk": -1
+                "fireRisk": 5
             }
         },
         {
-            "name": "opt2",
-            "description": "opt2des",
+            "name": "Put on no-smoking signs.",
+            "description": "Put on no-smoking signs.",
             "result": {
-                "totalMoney": 2,
-                "income": 2,
-                "employeeNum": 2,
-                "fireRisk": 2
+                "totalMoney": -50,
+                "fireRisk": -5
+            }
+        },
+        {
+            "name": "Build a smoking room for them.",
+            "description": "Build a smoking room for them.",
+            "result": {
+                "totalMoney": -150,
+                "fireRisk": -10
             }
         }
     ]
