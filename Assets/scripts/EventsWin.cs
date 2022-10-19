@@ -41,15 +41,17 @@ public class OptionRenderer
                 GameObject option = Object.Instantiate(optionPrefab, optionsWin.transform);
                 option.transform.SetParent(optionsWin.transform);
                 var pos = option.transform.localPosition;
-                pos.y += i * 140; // ?
+                pos.y -= i * 130 + 15; // 每一个选项往下移动 130 TODO: 不能硬编码
                 option.transform.localPosition = pos;
                 option.GetComponentInChildren<TextMeshProUGUI>().text = "[" + e.options[i].name + "]: " + e.options[i].description;
                 var btn = option.transform.Find("OptionButton").GetComponent<Button>();
                 
+                int idx = i; // 必须这样做 否则 listener 会引用到最后一个 i
                 btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => {
-                    Debug.Log("apply " + e.options[i].name);
-                    e.options[i].result.Apply();
+                    Debug.Log(idx);
+                    Debug.Log("apply " + e.options[idx].name);
+                    e.options[idx].result.Apply();
                     // optionsWin.SetActive(false);
                 });
             }
