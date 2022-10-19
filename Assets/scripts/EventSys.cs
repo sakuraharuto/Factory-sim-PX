@@ -13,7 +13,7 @@ public class Result
     public int employeeNum;
     public int fireRisk;
 
-    void Apply()
+    public void Apply()
     {
         GameData.totalmoney += totalMoney;
         GameData.income += income;
@@ -71,6 +71,7 @@ public class EventPool
         {
             instance = new EventPool();
             instance.events = new List<Event>(); // list<> have to be initialized first!
+            
         }
         return instance;
     }
@@ -85,6 +86,7 @@ public class EventPool
         if (e != null){
             // e.printJson();
             events.Add(e);
+            // Debug.Log(e.options[0].name);
         }
         else
         {
@@ -97,15 +99,14 @@ public class EventSys : MonoBehaviour
 {
     string path = @"Assets/Events/";
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         EventPool eventPool = EventPool.GetInstance();
         var eventsFiles = new DirectoryInfo(path).GetFiles("e*.json");
 
         foreach (var file in eventsFiles)
         {
-            // Debug.Log(file.FullName);
+            Debug.Log(file.FullName);
             eventPool.LoadEventFormJSON(file.FullName);
         }
     }
