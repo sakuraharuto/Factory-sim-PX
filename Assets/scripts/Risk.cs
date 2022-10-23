@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Rsik : MonoBehaviour
+public class Risk : MonoBehaviour
 {
 
     public float risk=10f;

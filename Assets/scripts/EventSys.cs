@@ -15,10 +15,12 @@ public class Result
 
     public void Apply()
     {
-        GameData.totalmoney += totalMoney;
-        GameData.income += income;
-        GameData.employeenum += employeeNum;
-        GameData.firerisk += fireRisk;
+        GameData.Instance.totalmoney += totalMoney;
+        GameData.Instance.income += income;
+        GameData.Instance.employee_num += employeeNum;
+        GameData.Instance.firerisk += fireRisk;
+
+        GameData.Instance.Render();
     }
 }
 
@@ -65,15 +67,17 @@ public class EventPool
 
     private EventPool() { }
 
-    public static EventPool GetInstance()
+    public static EventPool Instance
     {
-        if (instance == null)
+        get 
         {
-            instance = new EventPool();
-            instance.events = new List<Event>(); // list<> have to be initialized first!
-            
+            if (instance == null)
+            {
+                instance = new EventPool();
+                instance.events = new List<Event>(); // list<> have to be initialized first!
+            }
+            return instance;
         }
-        return instance;
     }
 
     public List<Event> events;
@@ -83,7 +87,8 @@ public class EventPool
         string json = File.ReadAllText(path);
 
         Event e = JsonUtility.FromJson<Event>(json);
-        if (e != null){
+        if (e != null)
+        {
             // e.printJson();
             events.Add(e);
             // Debug.Log(e.options[0].name);
@@ -93,6 +98,52 @@ public class EventPool
             Debug.Log("json parse failed: " + path);
         }
     }
+
+    public void Shuffle()
+    {
+        System.Random random = new System.Random();
+        int n = events.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            Event value = events[k];
+            events[k] = events[n];
+            events[n] = value;
+        }
+    }
+
+    public Event GetRandomEvent()
+    {
+        System.Random random = new System.Random();
+        int idx = random.Next(events.Count);
+        return events[idx];
+    }
+
+    public Event GetEvent(string name)
+    {
+        foreach (var e in events)
+        {
+            if (e.name == name)
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public Event GetEventContainWord(string word)
+    {
+        foreach (var e in events)
+        {
+            if (e.name.Contains(word))
+            {
+                return e;
+            }
+        }
+        return null;
+    }
+
 }
 
 public class EventSys : MonoBehaviour
@@ -101,12 +152,12 @@ public class EventSys : MonoBehaviour
 
     void Awake()
     {
-        EventPool eventPool = EventPool.GetInstance();
+        EventPool eventPool = EventPool.Instance;
         var eventsFiles = new DirectoryInfo(path).GetFiles("e*.json");
 
         foreach (var file in eventsFiles)
         {
-            Debug.Log(file.FullName);
+            // Debug.Log(file.FullName);
             eventPool.LoadEventFormJSON(file.FullName);
         }
     }

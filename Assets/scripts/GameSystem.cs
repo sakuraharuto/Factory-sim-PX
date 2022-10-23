@@ -7,124 +7,113 @@ using TMPro;
 
 public class GameData 
 {
-    public static int event_idx = 0;
-
-    public static int totalmoney=100;
-    public static int income;
-    public static int employeenum=0;
-    public static int firerisk=0;
-    public static int equipment_quantity=1;
-    public static int equipment_cost=50;
-    public static int month_num = 1;
-
-   /* public GameData(int TotalMoney,  int EmployeeNum, int FireRisk, int Equipment_Quantity)
+    public static GameData instance;
+    
+    private GameData() 
     {
-        totalmoney = TotalMoney;
-        employeenum = EmployeeNum;
-        firerisk = FireRisk;
-        equipment_quantity = Equipment_Quantity;
-       
-    }*/
+        factoryStatus = GameObject.Find("FactoryStatus");
+        Ttotalmoney = factoryStatus.transform.Find("Asset").GetComponent<TextMeshProUGUI>();
+        Tequipment = factoryStatus.transform.Find("Equipment").GetComponent<TextMeshProUGUI>();
+        Tfirerisk = factoryStatus.transform.Find("FireRisk").GetComponent<TextMeshProUGUI>();
+        Temployees = factoryStatus.transform.Find("Employees").GetComponent<TextMeshProUGUI>();
+        Tincome = factoryStatus.transform.Find("MonthlyIncome").GetComponent<TextMeshProUGUI>();
+    
+        init();
+    }
+    
+    public static GameData Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameData();
+            }
+            return instance;
+        }
+    }
 
-   /* public void addEmployee()
-    { 
-        employeenum ++;
-    }*/
+    public GameObject factoryStatus;
+    private TextMeshProUGUI Ttotalmoney;
+    private TextMeshProUGUI Tequipment;
+    private TextMeshProUGUI Tfirerisk;
+    private TextMeshProUGUI Temployees;
+    private TextMeshProUGUI Tincome;
 
-  
+    public void init()
+    {
+        totalmoney = 100;
+        income = 0;
+        employee_num = 0;
+        firerisk = 0;
+        equipment_quantity = 1;
+        equipment_cost = 50;
+        month_num = 1;
+    }
 
-    private int months;
+    public int totalmoney;
+    public int income;
+    public int employee_num;
+    public int firerisk;
+    public int equipment_quantity;
+    public int equipment_cost;
+    public int month_num;
+
+    public void Render()
+    {
+        Ttotalmoney.text = totalmoney.ToString();
+        Tequipment.text = equipment_quantity.ToString();
+        Tfirerisk.text = firerisk.ToString();
+        Temployees.text = employee_num.ToString();
+        Tincome.text = income.ToString();
+    }
+
+    public void EndTurn()
+    {
+        month_num += 1;
+        totalmoney += income;
+        firerisk += 1;
+        Render();
+    }
 }
 
 
 public class GameSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
 
-    //NewMonth ???????????
-    public TextMeshProUGUI Ttotalmoney;
-    public TextMeshProUGUI Tequipment;
-    public TextMeshProUGUI Tfirerisk;
-    public TextMeshProUGUI Temployees;
-    public TextMeshProUGUI Tincome;
-    
-
-    public  void  show()
-    {
-        Ttotalmoney = transform.GetComponent<TextMeshProUGUI>();
-        Tequipment = transform.GetComponent<TextMeshProUGUI>();
-        Tfirerisk = transform.GetComponent<TextMeshProUGUI>();
-        Temployees = transform.GetComponent<TextMeshProUGUI>();
-        Tincome = transform.GetComponent<TextMeshProUGUI>();
-        Ttotalmoney.text = GameData.totalmoney.ToString();
-        Tequipment.text = GameData.equipment_quantity.ToString();
-        Tfirerisk.text = GameData.firerisk.ToString();
-        Temployees.text = GameData.employeenum.ToString();
-        Tincome.text = GameData.income.ToString();
-    }
-
-    public int GetTotalMoney()
-    {
-        return GameData.totalmoney;
-    }
-
-    public void addEquipment()
-    {
-        GameData.equipment_quantity++; 
-        GameData.totalmoney = GameData.totalmoney - GameData.equipment_cost;
-    }
-
-    public int GetIncome()
-    {
-        GameData.income = GameData.equipment_quantity * 200;
-        return GameData.income;
-    }
-
-    public void SetFireRisk(int n)
-    {
-        GameData.firerisk = n;
-    }
-
-
-   
-    public  void NewMonth()
-    {
-        GameData.firerisk=GameData.firerisk+10;
-        GameData.month_num++;
-        Debug.Log(GameData.month_num);
-        if (GameData.month_num > 3) {
-            var e = EventPool.GetInstance().events[GameData.event_idx++ % 3];
-            var info = e.name + ":" + e.description;
-            Debug.Log(info);
-            for (int i = 0; i < e.optionNum; i++)
-            {
-                var option = "[" + e.options[i].name + "]" + e.options[i].description;
-                Debug.Log(option);
-            }
-            
-        }
-        if(GameData.firerisk>80)
-        {
-             var x=EventPool.GetInstance().events[GameData.event_idx];
-        }
-    }
-
-    //EndMonth ??????
-    public void EndMonth()
-    {
-        GameData.income = GetIncome();
-        GameData.totalmoney = GameData.totalmoney + GameData.income;
-        Debug.Log(GameData.totalmoney);
-        Debug.Log(GameData.income);
-
-    }
-
-    
-    
     void Start()
     {
-        
+        GameData.Instance.Render();
+        NewMonth();
     }
+
+    public void AddEquipment()
+    {
+        // GameData.equipment_quantity++; 
+        // GameData.totalmoney = GameData.totalmoney - GameData.equipment_cost;
+    }
+ 
+    public void NewMonth()
+    {
+        if (GameData.Instance.month_num > 2) 
+        {
+            Event e = EventPool.Instance.GetRandomEvent();
+            EventRenderer.Instance.Render(e);
+        }
+
+        // if(GameData.firerisk>80)
+        // {
+        //      var x=EventPool.Instance.events[GameData.event_idx];
+        // }
+    }
+
+    public void EndMonth()
+    {
+        GameData.Instance.EndTurn();
+        Debug.Log("EndMonth: " + GameData.Instance.month_num);
+        NewMonth();
+    }
+
 
     // Update is called once per frame
     void Update()
