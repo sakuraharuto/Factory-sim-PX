@@ -20,6 +20,10 @@ public class Result
         GameData.Instance.employee_num += employeeNum;
         GameData.Instance.firerisk += fireRisk;
 
+        if (GameData.Instance.firerisk < 0)
+        {
+            GameData.Instance.firerisk = 0;
+        }
         GameData.Instance.Render();
     }
 }

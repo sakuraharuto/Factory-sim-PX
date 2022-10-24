@@ -9,6 +9,6 @@ public class EndControl : MonoBehaviour
 
     public void End()
     {
-        jieshuMenu.SetActive(true);
+       // jieshuMenu.SetActive(true);
     }
 }

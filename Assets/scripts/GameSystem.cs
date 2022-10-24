@@ -43,7 +43,7 @@ public class GameData
     public void init()
     {
         totalmoney = 100;
-        income = 0;
+        income = 200;
         employee_num = 0;
         firerisk = 0;
         equipment_quantity = 1;
@@ -111,6 +111,7 @@ public class GameSystem : MonoBehaviour
     {
         GameData.Instance.EndTurn();
         Debug.Log("EndMonth: " + GameData.Instance.month_num);
+        Debug.Log("totalmoney: " + GameData.Instance.totalmoney);
         NewMonth();
     }
 
