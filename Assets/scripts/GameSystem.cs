@@ -75,6 +75,23 @@ public class GameData
         firerisk += 1;
         Render();
     }
+
+    public void AddEquipment()
+    {
+        equipment_quantity++;
+        totalmoney -= 400;
+        income += 100;
+    }
+
+
+    public void Addemployee()
+    {
+        employee_num++;
+        totalmoney -= 200;
+        income += 100;
+    }
+
+
 }
 
 
@@ -87,12 +104,19 @@ public class GameSystem : MonoBehaviour
         NewMonth();
     }
 
+    public void Addemployee()
+    {
+        GameData.instance.Addemployee();
+        Debug.Log("employee");
+    }
+
     public void AddEquipment()
     {
-        // GameData.equipment_quantity++; 
-        // GameData.totalmoney = GameData.totalmoney - GameData.equipment_cost;
+        GameData.instance.AddEquipment();
+        Debug.Log("equipment");
     }
- 
+
+
     public void NewMonth()
     {
         if (GameData.Instance.month_num > 2) 

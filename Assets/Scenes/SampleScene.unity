@@ -1961,7 +1961,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 830325992}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962309921}
+        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
+        m_MethodName: AddEquipment
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &830325992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4065,7 +4077,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1777989191}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962309921}
+        m_TargetAssemblyTypeName: GameSystem, Assembly-CSharp
+        m_MethodName: Addemployee
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1777989191
 MonoBehaviour:
   m_ObjectHideFlags: 0
