@@ -70,8 +70,20 @@ public class EventRenderer
                     Debug.Log("apply " + e.options[idx].name);
                     e.options[idx].result.Apply();
                     optionWin.SetActive(false);
+                    Clear();
                 });
             }
+        }
+    }
+
+    public void Clear()
+    {
+        eventInfo.text = "Nothing Wrong";
+        eventButton.onClick.RemoveAllListeners();
+        optionWin.SetActive(false);
+        foreach (Transform child in optionWin.transform)
+        {
+            Object.Destroy(child.gameObject);
         }
     }
 
