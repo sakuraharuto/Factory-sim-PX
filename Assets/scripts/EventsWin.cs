@@ -59,9 +59,9 @@ public class EventRenderer
                 GameObject option = Object.Instantiate(optionPrefab, optionWin.transform);
                 option.transform.SetParent(optionWin.transform);
                 var pos = option.transform.localPosition;
-                pos.y -= i * 130 + 15; // 每一个选项往下移动 145 // TODO: 不要硬编码
+                pos.y -= i * 130 + 200; // 每一个选项往下移动
                 option.transform.localPosition = pos;
-                option.GetComponentInChildren<TextMeshProUGUI>().text = "[" + e.options[i].name + "]: " + e.options[i].description;
+                option.GetComponentInChildren<TextMeshProUGUI>().text = "  [" + e.options[i].name + "]: " + e.options[i].description;
                 var btn = option.transform.Find("OptionButton").GetComponent<Button>();
                 
                 int idx = i; // 必须这样做 否则 listener 会捕获到最后一个 i

@@ -78,23 +78,20 @@ public class GameData
 
     public void AddEquipment()
     {
-            equipment_quantity++;
-            totalmoney -= 400;
-            income += equipment_quantity * 40;
-            Render();
-        
-
-
+        equipment_quantity++;
+        totalmoney -= 400;
+        income += equipment_quantity * 40;
+        Render();
     }
 
 
     public void Addemployee()
     {
-        
-            employee_num++;
-            totalmoney -= 200;
-            income += employee_num * 20;
-            Render();
+    
+        employee_num++;
+        totalmoney -= 200;
+        income += employee_num * 20;
+        Render();
     }
 
 
