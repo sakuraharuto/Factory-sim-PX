@@ -78,35 +78,23 @@ public class GameData
 
     public void AddEquipment()
     {
-        if(totalmoney>=400)
-        {
             equipment_quantity++;
             totalmoney -= 400;
             income += equipment_quantity * 40;
             Render();
-        }
-        else
-        {
-            Debug.Log("money is not enough");
-        }
+        
+
 
     }
 
 
     public void Addemployee()
     {
-        if(totalmoney>=200)
-        {
+        
             employee_num++;
             totalmoney -= 200;
             income += employee_num * 20;
             Render();
-        }
-        else
-        {
-            Debug.Log("money is not enough");
-        }
-        
     }
 
 
@@ -115,23 +103,47 @@ public class GameData
 
 public class GameSystem : MonoBehaviour
 {
-
+    public GameObject insmoney;
     void Start()
     {
         GameData.Instance.Render();
         NewMonth();
     }
 
+    public void Insmoney()
+    {
+        insmoney.SetActive(true);
+    }
+
     public void Addemployee()
     {
-        GameData.instance.Addemployee();
-        Debug.Log("employee");
+        if(GameData.instance.totalmoney>=200)
+        {
+            GameData.instance.Addemployee();
+            Debug.Log("employee");
+        }
+        else
+        {
+            Insmoney();
+            Debug.Log("money is not enough");
+        }
+       
+        
     }
 
     public void AddEquipment()
     {
-        GameData.instance.AddEquipment();
-        Debug.Log("equipment");
+        if(GameData.instance.totalmoney>=400)
+        {
+            GameData.instance.AddEquipment();
+           Debug.Log("equipment");
+        }
+        else
+        {
+            Insmoney();
+            Debug.Log("money is not enough");
+        }
+      
     }
 
 
