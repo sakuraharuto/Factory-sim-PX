@@ -78,17 +78,35 @@ public class GameData
 
     public void AddEquipment()
     {
-        equipment_quantity++;
-        totalmoney -= 400;
-        income += 100;
+        if(totalmoney>=400)
+        {
+            equipment_quantity++;
+            totalmoney -= 400;
+            income += equipment_quantity * 40;
+            Render();
+        }
+        else
+        {
+            Debug.Log("money is not enough");
+        }
+
     }
 
 
     public void Addemployee()
     {
-        employee_num++;
-        totalmoney -= 200;
-        income += 100;
+        if(totalmoney>=200)
+        {
+            employee_num++;
+            totalmoney -= 200;
+            income += employee_num * 20;
+            Render();
+        }
+        else
+        {
+            Debug.Log("money is not enough");
+        }
+        
     }
 
 
