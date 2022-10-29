@@ -2,7 +2,7 @@
     "id": 1,
     "name": "Electronic wear out",
     "description": "Some electronic components wear out after some time, which may cause a fire hazard in the future.",
-    "type": 11,
+    "type": 1,
     "hasResult": false,
     "result": {
         "totalMoney": 111,

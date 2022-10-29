@@ -49,6 +49,8 @@ public class EventRenderer
     
     public void Render(Event e)
     {
+        if (e == null)          return;
+        
         eventInfo.text = "[" + e.name + "]: " + e.description;
 
         if (e.hasOption)
@@ -70,7 +72,16 @@ public class EventRenderer
                     Debug.Log("apply " + e.options[idx].name);
                     e.options[idx].result.Apply();
                     optionWin.SetActive(false);
-                    Clear();
+
+                    if (EventQ.Instance.IsEmpty())
+                    {
+                        Clear();   
+                    }
+                    else
+                    {
+                        Render(EventQ.Instance.GetEvent());
+                    }
+
                 });
             }
         }

@@ -7,7 +7,7 @@ using TMPro;
 
 public class GameData 
 {
-    public static GameData instance;
+    private static GameData instance;
     
     private GameData() 
     {
@@ -44,7 +44,7 @@ public class GameData
     {
         totalmoney = 100;
         income = 200;
-        employee_num = 0;
+        employee_num = 1;
         firerisk = 0;
         equipment_quantity = 1;
         equipment_cost = 50;
@@ -102,12 +102,8 @@ public class GameSystem : MonoBehaviour
 {
     public GameObject insmoney;
 
-    // Event List
-    public List<Event> eventList;
-    
     void Start()
     {
-        eventList = new List<Event>();
         GameData.Instance.Render();
         NewMonth();
     }
@@ -119,9 +115,9 @@ public class GameSystem : MonoBehaviour
 
     public void Addemployee()
     {
-        if(GameData.instance.totalmoney>=200)
+        if(GameData.Instance.totalmoney>=200)
         {
-            GameData.instance.Addemployee();
+            GameData.Instance.Addemployee();
             Debug.Log("employee");
         }
         else
@@ -135,10 +131,10 @@ public class GameSystem : MonoBehaviour
 
     public void AddEquipment()
     {
-        if(GameData.instance.totalmoney>=400)
+        if(GameData.Instance.totalmoney>=400)
         {
-            GameData.instance.AddEquipment();
-           Debug.Log("equipment");
+            GameData.Instance.AddEquipment();
+            Debug.Log("equipment");
         }
         else
         {
@@ -151,30 +147,50 @@ public class GameSystem : MonoBehaviour
 
     public void NewMonth()
     {
-        if (GameData.Instance.month_num > 2) 
+        if (GameData.Instance.month_num < 3) 
         {
-            Event e = EventPool.Instance.GetRandomEvent();
-            EventRenderer.Instance.Render(e);
+            return;
         }
 
-        // if(GameData.firerisk>80)
-        // {
-        //      var x=EventPool.Instance.events[GameData.event_idx];
-        // }
+        System.Random random = new System.Random();
+
+        do
+        {
+            Event e = EventPool.Instance.GetRandomEvent();
+            // 目前暂时不希望特殊事件被随机出来
+            if (e.type == (int)EventType.Normal)
+            {
+                EventQ.Instance.AddEvent(e);
+            }
+        } while (GameData.Instance.month_num > random.Next(1, 72));
+
+        
+        if(GameData.Instance.firerisk > 20)
+        {
+            if (GameData.Instance.firerisk > random.Next(0, 100))
+            {
+                Event efire = EventPool.Instance.GetEvent("Electric fire");
+                EventQ.Instance.AddEvent(efire);
+            }
+        }
+
+        if (EventQ.Instance.IsEmpty() == false)
+        {
+            Event e = EventQ.Instance.GetEvent();
+            if (e != null)  // 没有可能是空的吧... 也就随便一写
+            {
+                EventRenderer.Instance.Render(e);
+            }
+        }
     }
 
     public void EndMonth()
     {
         GameData.Instance.EndTurn();
-        Debug.Log("EndMonth: " + GameData.Instance.month_num);
-        Debug.Log("totalmoney: " + GameData.Instance.totalmoney);
+
+        // TODO: Clear Event Panel
+
         NewMonth();
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

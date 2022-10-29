@@ -2,7 +2,7 @@
     "id": 2,
     "name": "Smoking",
     "description": "Some employees smoke during work, and this may cause a fire hazard.",
-    "type": 11,
+    "type": 1,
     "hasResult": false,
     "result": {
         "totalMoney": -222,

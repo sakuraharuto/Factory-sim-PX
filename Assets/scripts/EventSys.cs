@@ -4,6 +4,12 @@ using UnityEngine;
 using System.IO;
 using System;
 
+enum EventType
+{
+    Normal = 1,
+    Special = 2
+}
+
 
 [Serializable]
 public class Result 
@@ -149,6 +155,72 @@ public class EventPool
     }
 
 }
+
+// TODO: 
+// 内部的Queue应该是改成优先队列
+// 要搞一个Wrapper类，包含 Event 和 Month
+// 这样可以添加时间信息到队列中, 实现几个月后触发事件的功能
+// 也许这样需求Event增加一个字段，表示触发时间
+public class EventQ
+{
+    // 老子真的不想写单例了
+    // 但是不写成单例的话 按钮那里又咋整
+    private static EventQ instance;
+
+    private EventQ() { }
+
+    public static EventQ Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new EventQ();
+                instance.normalEvents = new Queue<Event>();
+                instance.specialEvents = new Queue<Event>();
+            }
+            return instance;
+        }
+    }
+
+    private Queue<Event> normalEvents;
+    private Queue<Event> specialEvents;
+
+    public void AddEvent(Event e)
+    {
+        if (e.type == (int)EventType.Normal)
+        {
+            normalEvents.Enqueue(e);
+        }
+        else if (e.type == (int)EventType.Special)
+        {
+            specialEvents.Enqueue(e);
+        }
+    }
+
+    public Event GetEvent()
+    {
+        if (specialEvents.Count > 0)
+        {
+            return specialEvents.Dequeue();
+        }
+        else if (normalEvents.Count > 0)
+        {
+            return normalEvents.Dequeue();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public bool IsEmpty()
+    {
+        return normalEvents.Count == 0 && specialEvents.Count == 0;
+    }
+
+}
+
 
 public class EventSys : MonoBehaviour
 {

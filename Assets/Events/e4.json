@@ -2,7 +2,7 @@
     "id": 4,
     "name": "Electric fire",
     "description": "The electric circuit for the production line is on fire! We need to deal with it now!",
-    "type": 22,
+    "type": 2,
     "hasResult": false,
     "result": {
         "totalMoney": -222,

@@ -2,7 +2,7 @@
     "id": 3,
     "name": "Vent broke",
     "description": "Venting broke down in the factory. The ventilation problem may cause trouble in the future.",
-    "type": 11,
+    "type": 1,
     "hasResult": false,
     "result": {
         "totalMoney": -222,

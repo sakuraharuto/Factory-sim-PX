@@ -2,7 +2,7 @@
     "id": 5,
     "name": "Warehouse on fire",
     "description": "Our warehouse with flammable material is on fire! What should we do?!",
-    "type": 11,
+    "type": 1,
     "hasResult": false,
     "result": {
         "totalMoney": -222,
