@@ -101,11 +101,23 @@ public class EventPool
         {
             // e.printJson();
             events.Add(e);
-            // Debug.Log(e.options[0].name);
         }
         else
         {
             Debug.Log("json parse failed: " + path);
+        }
+    }
+
+    public void LoadEvents(string json)
+    {
+        Event e = JsonUtility.FromJson<Event>(json);
+        if (e != null)
+        {
+            events.Add(e);
+        }
+        else
+        {
+            Debug.Log("json load failed: " + json);
         }
     }
 
@@ -224,18 +236,213 @@ public class EventQ
 
 public class EventSys : MonoBehaviour
 {
-    string path = @"Assets/Events/";
+    // string path = @"Assets/Events/";
 
+    // 暂时只能这样了, 硬编码进去
     void Awake()
     {
         EventPool eventPool = EventPool.Instance;
-        var eventsFiles = new DirectoryInfo(path).GetFiles("e*.json");
+        // var eventsFiles = new DirectoryInfo(path).GetFiles("e*.json");
 
-        foreach (var file in eventsFiles)
+        // foreach (var file in eventsFiles)
+        // {
+        //     // Debug.Log(file.FullName);
+        //     eventPool.LoadEventFormJSON(file.FullName);
+        // }
+
+        eventPool.LoadEvents(@"{
+    ""id"": 1,
+    ""name"": ""Electronic wear out"",
+    ""description"": ""Some electronic components wear out after some time, which may cause a fire hazard in the future."",
+    ""type"": 1,
+    ""hasResult"": false,
+    ""result"": {
+        ""totalMoney"": 111,
+        ""income"": 1111,
+        ""employeeNum"": 11111,
+        ""fireRisk"": 1
+    },
+    ""hasOption"": true,
+    ""optionNum"": 3,
+    ""options"": [
         {
-            // Debug.Log(file.FullName);
-            eventPool.LoadEventFormJSON(file.FullName);
+            ""name"": ""It's okay, don't worry."",
+            ""description"": ""It's okay, don't worry."",
+            ""result"": {
+                ""fireRisk"": 10
+            }
+        },
+        {
+            ""name"": ""Do a fast repair."",
+            ""description"": ""Do a fast repair."",
+            ""result"": {
+                ""totalMoney"": -50,
+                ""fireRisk"": -5
+            }
+        },
+        {
+            ""name"": ""Shut down production and complete repair."",
+            ""description"": ""Shut down production and complete repair."",
+            ""result"": {
+                ""totalMoney"": -100,
+                ""income"": 0,
+                ""fireRisk"": -10
+            }
         }
+    ]
+}");
+
+        eventPool.LoadEvents(@"{
+    ""id"": 2,
+    ""name"": ""Smoking"",
+    ""description"": ""Some employees smoke during work, and this may cause a fire hazard."",
+    ""type"": 1,
+    ""hasResult"": false,
+    ""result"": {
+        ""totalMoney"": -222,
+        ""income"": -2222,
+        ""employeeNum"": -22222
+    },
+    ""hasOption"": true,
+    ""optionNum"": 3,
+    ""options"": [
+        {
+            ""name"": ""It's okay, don't worry."",
+            ""description"": ""It's okay, don't worry."",
+            ""result"": {
+                ""fireRisk"": 5
+            }
+        },
+        {
+            ""name"": ""Put on no-smoking signs."",
+            ""description"": ""Put on no-smoking signs."",
+            ""result"": {
+                ""totalMoney"": -50,
+                ""fireRisk"": -5
+            }
+        },
+        {
+            ""name"": ""Build a smoking room for them."",
+            ""description"": ""Build a smoking room for them."",
+            ""result"": {
+                ""totalMoney"": -150,
+                ""fireRisk"": -10
+            }
+        }
+    ]
+}");
+
+        eventPool.LoadEvents(@"{
+    ""id"": 3,
+    ""name"": ""Vent broke"",
+    ""description"": ""Venting broke down in the factory. The ventilation problem may cause trouble in the future."",
+    ""type"": 1,
+    ""hasResult"": false,
+    ""result"": {
+        ""totalMoney"": -222,
+        ""income"": -2222,
+        ""employeeNum"": -22222
+    },
+    ""hasOption"": true,
+    ""optionNum"": 2,
+    ""options"": [
+        {
+            ""name"": ""Leave it now."",
+            ""description"": ""Leave it now."",
+            ""result"": {
+                ""fireRisk"": 10
+            }
+        },
+        {
+            ""name"": ""We need to repair them."",
+            ""description"": ""We need to repair them."",
+            ""result"": {
+                ""totalMoney"": -100,
+                ""fireRisk"": -10
+            }
+        }
+    ]
+}");
+
+        eventPool.LoadEvents(@"{
+    ""id"": 4,
+    ""name"": ""Electric fire"",
+    ""description"": ""The electric circuit for the production line is on fire! We need to deal with it now!"",
+    ""type"": 2,
+    ""hasResult"": false,
+    ""result"": {
+        ""totalMoney"": -222,
+        ""income"": -2222,
+        ""employeeNum"": -22222
+    },
+    ""hasOption"": true,
+    ""optionNum"": 3,
+    ""options"": [
+        {
+            ""name"": ""Call 911!"",
+            ""description"": ""Call 911!"",
+            ""result"": {
+                ""totalMoney"": -300,
+                ""income"": 0,
+                ""fireRisk"": -35
+            }
+        },
+        {
+            ""name"": ""Use sand and dry powder extinguisher!"",
+            ""description"": ""Use sand and dry powder extinguisher!"",
+            ""result"": {
+                ""totalMoney"": -200,
+                ""income"": 0,
+                ""fireRisk"": -50
+            }
+        },
+        {
+            ""name"": ""Use a fire hose with water!"",
+            ""description"": ""Use a fire hose with water!"",
+            ""result"": {
+                ""totalMoney"": -500,
+                ""income"": 0,
+                ""fireRisk"": -20
+            }
+        }
+    ]
+}");
+
+        eventPool.LoadEvents(@"{
+    ""id"": 5,
+    ""name"": ""Warehouse on fire"",
+    ""description"": ""Our warehouse with flammable material is on fire! What should we do?!"",
+    ""type"": 2,
+    ""hasResult"": false,
+    ""result"": {
+        ""totalMoney"": -222,
+        ""income"": -2222,
+        ""employeeNum"": -22222
+    },
+    ""hasOption"": true,
+    ""optionNum"": 2,
+    ""options"": [
+        {
+            ""name"": ""Call 911!"",
+            ""description"": ""Call 911!"",
+            ""result"": {
+                ""totalMoney"": -500,
+                ""income"": 0,
+                ""fireRisk"": -30
+            }
+        },
+        {
+            ""name"": ""Use a fire hose with water!"",
+            ""description"": ""Use a fire hose with water!"",
+            ""result"": {
+                ""totalMoney"": -300,
+                ""income"": 0,
+                ""fireRisk"": -30
+            }
+        }
+    ]
+}");
+
     }
 
     // Update is called once per frame
