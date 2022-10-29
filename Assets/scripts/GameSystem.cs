@@ -172,6 +172,11 @@ public class GameSystem : MonoBehaviour
                 Event efire = EventPool.Instance.GetEvent("Electric fire");
                 EventQ.Instance.AddEvent(efire);
             }
+            if (GameData.Instance.firerisk > random.Next(0, 100))
+            {
+                Event wfire = EventPool.Instance.GetEvent("Warehouse on fire");
+                EventQ.Instance.AddEvent(wfire);
+            }
         }
 
         if (EventQ.Instance.IsEmpty() == false)
