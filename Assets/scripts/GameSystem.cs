@@ -101,8 +101,13 @@ public class GameData
 public class GameSystem : MonoBehaviour
 {
     public GameObject insmoney;
+
+    // Event List
+    public List<Event> eventList;
+    
     void Start()
     {
+        eventList = new List<Event>();
         GameData.Instance.Render();
         NewMonth();
     }
